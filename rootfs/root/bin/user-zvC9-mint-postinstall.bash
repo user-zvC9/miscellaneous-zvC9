@@ -111,6 +111,8 @@ fi
 
 sync ; sync
 
-apt --download-only install openssh-server apache2 libapache2-mod-php php php-xml php-mysql mariadb-server vsftpd samba sympathy
+apt --download-only install openssh-server apache2 libapache2-mod-php php \
+  php-xml php-mysql mariadb-server vsftpd samba sympathy isc-dhcp-server \
+  bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix
 sync ; sync
 
