@@ -1,0 +1,11 @@
+[Unit]
+Description=onboot sound
+
+[Service]
+Type=forking
+ExecStart=/root/bin/user-zvC9-iptables.bash
+
+
+[Install]
+WantedBy=multi-user.target
+
