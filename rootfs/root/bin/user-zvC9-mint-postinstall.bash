@@ -48,13 +48,6 @@ sync ; sync
  
 # apt install ansible libopenusb-dev python3-sphinx-bootstrap-theme
 
-if test -e /root/meson-0.61.5.tar.gz ; then
- :
-else
- wget -O /root/meson-0.61.5.tar.gz  https://github.com/mesonbuild/meson/releases/download/0.61.5/meson-0.61.5.tar.gz
- sync  ; sync
-fi
-
 mkdir -p /root/build/git/glib
 cd /root/build/git/glib
 if test "x$PWD" = "x/root/build/git/glib" ; then
@@ -94,6 +87,29 @@ else
  sync ; sync
 fi
 
+if test !  -e /root/downloads/meson-0.61.5.tar.gz ; then
+ wget -O /root/downloads/meson-0.61.5.tar.gz  https://github.com/mesonbuild/meson/releases/download/0.61.5/meson-0.61.5.tar.gz
+ sync  ; sync
+fi
+
+
+if test ! -e /root/downloads/meson-0.61.5.tar.gz.sha256sum.txt ; then
+	echo "5e9a0d65c1a51936362b9686d1c5e9e184a6fd245d57e7269750ce50c20f5d9a *meson-0.61.5.tar.gz" > /root/downloads/meson-0.61.5.tar.gz.sha256sum.txt
+fi
+
+if test ! -e /root/downloads/memtest86+-5.31b.bin.sha256sum.txt ; then
+	echo "7bd0940333d276a1731e21f5e2be18bf3d8b5e61b4a42ea15cdfeba64b21a554 *memtest86+-5.31b.bin" > /root/downloads/memtest86+-5.31b.bin.sha256sum.txt
+fi
+
+if test ! -e /root/downloads/qemu-7.0.0.tar.xz.sha256sum.txt ; then
+	echo "f6b375c7951f728402798b0baabb2d86478ca53d44cedbefabbe1c46bf46f839 *qemu-7.0.0.tar.xz" > /root/downloads/qemu-7.0.0.tar.xz.sha256sum.txt
+fi
+
+if test ! -e /root/downloads/qemu-7.0.0.tar.xz.sha256sum.txt ; then
+	echo "f6b375c7951f728402798b0baabb2d86478ca53d44cedbefabbe1c46bf46f839 *qemu-7.0.0.tar.xz" > /root/downloads/qemu-7.0.0.tar.xz.sha256sum.txt
+fi
+
+sync ; sync
 
 apt --download-only install openssh-server apache2 libapache2-mod-php php php-xml php-mysql mariadb-server vsftpd samba sympathy
 sync ; sync
