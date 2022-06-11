@@ -26,8 +26,8 @@ sync ; sync
 
 
 
-apt purge bsd-mailx postfix
-sync ; sync
+#apt purge bsd-mailx postfix
+#sync ; sync
 
 # this is for qemu 7.0.0, also need glib and pixman
 apt install libpcre3-dev libsdl2-dev libsdl2-image-dev libgtk3.0-cil-dev python3-sphinx  libgnutls28-dev \
@@ -64,26 +64,36 @@ else
  :
 fi
 
-if test -e /root/pixman-0.40.0.tar.gz ; then
+mkdir -p /root/downloads
+
+if test -e /root/downloads/pixman-0.40.0.tar.gz ; then
  :
 else
- wget -O /root/pixman-0.40.0.tar.gz  https://www.cairographics.org/releases/pixman-0.40.0.tar.gz
+ wget -O /root/downloads/pixman-0.40.0.tar.gz  https://www.cairographics.org/releases/pixman-0.40.0.tar.gz
  sync ; sync
 fi
 
-if test -e /root/pixman-0.40.0.tar.gz.sha512 ; then
+if test -e /root/downloads/pixman-0.40.0.tar.gz.sha512 ; then
  :
 else
- wget -O /root/pixman-0.40.0.tar.gz.sha512  https://www.cairographics.org/releases/pixman-0.40.0.tar.gz.sha512
+ wget -O /root/downloads/pixman-0.40.0.tar.gz.sha512  https://www.cairographics.org/releases/pixman-0.40.0.tar.gz.sha512
  sync ; sync
 fi
 
-if test -e /root/qemu-7.0.0.tar.xz ; then
+if test -e /root/downloads/qemu-7.0.0.tar.xz ; then
  :
 else
- wget -O /root/qemu-7.0.0.tar.xz  https://download.qemu.org/qemu-7.0.0.tar.xz
+ wget -O /root/downloads/qemu-7.0.0.tar.xz  https://download.qemu.org/qemu-7.0.0.tar.xz
  sync ; sync
 fi
+
+if test -e /root/downloads/memtest86+-5.31b.bin ; then
+ :
+else
+ wget -O /root/downloads/memtest86+-5.31b.bin  https://www.memtest.org/download/archives/5.31b/memtest86+-5.31b.bin
+ sync ; sync
+fi
+
 
 apt --download-only install openssh-server apache2 libapache2-mod-php php php-xml php-mysql mariadb-server vsftpd samba sympathy
 sync ; sync
