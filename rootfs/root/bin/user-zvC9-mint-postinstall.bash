@@ -19,7 +19,8 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted c
  ogmrip-video-copy acidrip winff handbrake gopchop dvdbackup mencoder divxenc wodim devede videotrans dvdauthor \
  dvd+rw-tools growisofs openvpn openssl squashfs-tools squashfs-tools-ng smartmontools sweeper xfce4-xkb-plugin \
  procinfo syslinux-utils xscreensaver linuxvnc  \
- nftables \
+ nftables ftp openssh-client aria2 atftp filezilla ftp-ssl ftpcopy gftp gftp-gtk gftp-text inetutils-ftp jftp  \
+ wput zftp putty-tools ncftp tftp tnftp  \
  mint-meta-xfce mint-meta-codecs 
  
 sync ; sync
@@ -113,6 +114,7 @@ sync ; sync
 
 apt --download-only install openssh-server apache2 libapache2-mod-php php \
   php-xml php-mysql mariadb-server vsftpd samba sympathy isc-dhcp-server \
-  bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix
+  bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
+  tftpd
 sync ; sync
 
