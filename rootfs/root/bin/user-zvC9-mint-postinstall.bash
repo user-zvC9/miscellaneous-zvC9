@@ -21,7 +21,7 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted c
  procinfo syslinux-utils xscreensaver linuxvnc  \
  nftables ftp openssh-client aria2 atftp filezilla ftp-ssl ftpcopy gftp gftp-gtk gftp-text inetutils-ftp jftp  \
  wput zftp putty-tools ncftp tftp tnftp  \
- mint-meta-xfce mint-meta-codecs 
+ mint-meta-xfce mint-meta-codecs
  
 sync ; sync
 
@@ -115,6 +115,6 @@ sync ; sync
 apt --download-only install openssh-server apache2 libapache2-mod-php php \
   php-xml php-mysql mariadb-server vsftpd samba sympathy isc-dhcp-server \
   bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
-  tftpd
+  tftpd lxc lxc-utils uget dovecot-imapd dovecot-pop3d dovecot-mysql dovecot-pgsql
 sync ; sync
 
