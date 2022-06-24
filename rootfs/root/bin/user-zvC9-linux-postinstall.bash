@@ -1,5 +1,17 @@
 #!/bin/bash
 
+function user-zvC9-sync () {
+ #echo skipping a sync
+ # user-zvC9-sync
+ sync
+}
+
+if grep -i "Linux Mint" /etc/os-release ; then
+	mint_packages="mint-meta-xfce  mint-meta-codecs"
+else
+	mint_packages=""
+fi
+
 apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted calc brasero xorriso k3b geany gedit mousepad pluma \
  atril evince vim aqemu gimp gimp-help-ru geeqie xsane hplip-gui g++ gcc gcc-doc build-essential grub-efi-amd64 \
  imagemagick imagemagick-doc kdenlive openshot shotcut flowblade simplescreenrecorder recordmydesktop kazam \
@@ -10,7 +22,8 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted c
  keepass2-doc keepassx keepassxc gdisk fdisk gparted parted powertop nethogs genisoimage audacity flac x11vnc ssvnc \
  tigervnc-viewer kwave lame lame-doc  ffmpeg ffmpeg-doc gdb hwinfo gddrescue x2vnc whois traceroute  tilda  \
  adb scrcpy fastboot grub-efi-amd64 encfs ecryptfs-utils virtualbox-qt virtualbox-guest-additions-iso \
- virtualbox-ext-pack parole ristretto pix apt-file git cmake cmake-doc cmake-qt-gui \
+ virtualbox-ext-pack parole ristretto pix apt-file git cmake cmake-doc cmake-qt-gui keyutils tomb \
+ cryptsetup cryptsetup-bin cryptsetup-initramfs \
  libpcre3-dev \
  guvcview cutecom minicom simple-scan links links2 lynx xarchiver p7zip-full rsync file-roller \
  gdebi lftp wget curl curlftpfs qtcreator catfish grep util-linux findutils binutils net-tools wireless-tools \
@@ -21,31 +34,31 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted c
  procinfo syslinux-utils xscreensaver linuxvnc  \
  nftables ftp openssh-client aria2 atftp filezilla ftp-ssl ftpcopy gftp gftp-gtk gftp-text inetutils-ftp jftp  \
  wput zftp putty-tools ncftp tftp tnftp  \
- mint-meta-xfce mint-meta-codecs
+ $mint_packages
  
-sync ; sync
+user-zvC9-sync
 
 
 
 #apt purge bsd-mailx postfix
-#sync ; sync
+#user-zvC9-sync
 
 # this is for qemu 7.0.0, also need glib and pixman
 apt install libpcre3-dev libsdl2-dev libsdl2-image-dev libgtk3.0-cil-dev python3-sphinx  libgnutls28-dev \
 	libusb-1.0-0-dev  \
         libvde-dev libvncserver-dev libvdeplug-dev libgtkmm-3.0-dev libusb-1.0-0-dev libcap-ng-dev \
         libattr1-dev python3-sphinx-rtd-theme libpcre3-dev
-sync ; sync
+user-zvC9-sync
 
 update-alternatives --config iptables
-sync ; sync
+user-zvC9-sync
 
 apt install samba
 systemctl stop smbd
 systemctl stop nmbd
 systemctl disable smbd
 systemctl disable nmbd
-sync ; sync
+user-zvC9-sync
  
 # apt install ansible libopenusb-dev python3-sphinx-bootstrap-theme
 
@@ -53,7 +66,7 @@ mkdir -p /root/build/git/glib
 cd /root/build/git/glib
 if test "x$PWD" = "x/root/build/git/glib" ; then
  git clone https://gitlab.gnome.org/GNOME/glib.git
- sync ; sync
+ user-zvC9-sync
 else
  :
 fi
@@ -64,28 +77,28 @@ if test -e /root/downloads/pixman-0.40.0.tar.gz ; then
  :
 else
  wget -O /root/downloads/pixman-0.40.0.tar.gz  https://www.cairographics.org/releases/pixman-0.40.0.tar.gz
- sync ; sync
+ user-zvC9-sync
 fi
 
 if test -e /root/downloads/pixman-0.40.0.tar.gz.sha512 ; then
  :
 else
  wget -O /root/downloads/pixman-0.40.0.tar.gz.sha512  https://www.cairographics.org/releases/pixman-0.40.0.tar.gz.sha512
- sync ; sync
+ user-zvC9-sync
 fi
 
 if test -e /root/downloads/qemu-7.0.0.tar.xz ; then
  :
 else
  wget -O /root/downloads/qemu-7.0.0.tar.xz  https://download.qemu.org/qemu-7.0.0.tar.xz
- sync ; sync
+ user-zvC9-sync
 fi
 
 if test -e /root/downloads/memtest86+-5.31b.bin ; then
  :
 else
  wget -O /root/downloads/memtest86+-5.31b.bin  https://www.memtest.org/download/archives/5.31b/memtest86+-5.31b.bin
- sync ; sync
+ user-zvC9-sync
 fi
 
 if test !  -e /root/downloads/meson-0.61.5.tar.gz ; then
@@ -110,11 +123,11 @@ if test ! -e /root/downloads/qemu-7.0.0.tar.xz.sha256sum.txt ; then
 	echo "f6b375c7951f728402798b0baabb2d86478ca53d44cedbefabbe1c46bf46f839 *qemu-7.0.0.tar.xz" > /root/downloads/qemu-7.0.0.tar.xz.sha256sum.txt
 fi
 
-sync ; sync
+user-zvC9-sync
 
 apt --download-only install openssh-server apache2 libapache2-mod-php php \
   php-xml php-mysql mariadb-server vsftpd samba sympathy isc-dhcp-server \
   bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
   tftpd lxc lxc-utils uget dovecot-imapd dovecot-pop3d dovecot-mysql dovecot-pgsql
-sync ; sync
+user-zvC9-sync
 
