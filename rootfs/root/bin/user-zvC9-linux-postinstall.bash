@@ -6,6 +6,15 @@ function user-zvC9-sync () {
  sync
 }
 
+dpkg-reconfigure keyboard-configuration
+user-zvC9-sync
+
+nano /etc/default/grub
+user-zvC9-sync
+
+update-grub
+user-zvC9-sync
+
 if grep -i "Linux Mint" /etc/os-release ; then
 	mint_packages="mint-meta-xfce  mint-meta-codecs"
 else
