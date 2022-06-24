@@ -12,6 +12,20 @@ else
 	mint_packages=""
 fi
 
+apt update
+user-zvC9-sync
+
+if grep -i "Linux Mint" /etc/os-release ; then
+	mintupdate-cli upgrade
+	user-zvC9-sync
+	apt update
+	mintupdate-cli upgrade
+else
+	apt dist-upgrade
+fi
+
+user-zvC9-sync
+
 apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted calc brasero xorriso k3b geany gedit mousepad pluma \
  atril evince vim aqemu gimp gimp-help-ru geeqie xsane hplip-gui g++ gcc gcc-doc build-essential grub-efi-amd64 \
  imagemagick imagemagick-doc kdenlive openshot shotcut flowblade simplescreenrecorder recordmydesktop kazam \
