@@ -85,14 +85,14 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted c
  graphviz  gtkmorph gwenview handbrake-cli hugin hugin-tools icoutils inkscape kino kolourpaint kruler ocrad \
  ocrmypdf okular openscad pdf2svg pdfarranger pencil2d pfsglview pfstmo pfstools pfsview photocollage photoflare \
  phototonic pixelize pixmap png23d png2html pngmeta pqiv pstoedit qiv qosmic qpdfview rawtherapee renrot rgbpaint \
- sagcad sagcad-doc sane xsane scribus showfoto solvespace scanv streamer sxiv tesseract-ocr tesseract-ocr-eng \
+ sagcad sagcad-doc sane xsane scribus showfoto solvespace scantv streamer sxiv tesseract-ocr tesseract-ocr-eng \
  tesseract-ocr-rus tgif tintii tpp ttv tupi tuxpaint unpaper uvccapture v4l-conf vamps vgrabbj viewnior \
  wings3d x264  xaos xfig xcftools xine-console xine-ui xli xloadimage xmorph xpaint xzgv yagf yasw zbar-tools \
  pdf2djvu pdf2svg img2pdf k2pdfopt pod2pdf rst2pdf wkhtmltopdf   \
  iputils-arping iptables iproute2 iputils-ping iputils-tracepath isc-dhcp-client iw lftp net-tools mtr-tiny \
  network-manager openvpn tcpdump telnet whois transmission-gtk wireless-regdb wireless-tools wpasupplicant \
- nmap nmapsi4 hexchat ktorrent deluge qbittorret nftables mktorrent ntp ntpdate putty-tools rtorrent traceroute \
- wireshark wireshark-gtp wireshark-qt wireguard wireguard-tools tinyirc tcpstat tcptrace tcptraceroute  \
+ nmap nmapsi4 hexchat ktorrent deluge qbittorrent nftables mktorrent ntp ntpdate putty-tools rtorrent traceroute \
+ wireshark wireshark-gtk wireshark-qt wireguard wireguard-tools tinyirc tcpstat tcptrace tcptraceroute  \
  gimp gimp-help-ru geeqie xsane hplip-gui g++ gcc gcc-doc build-essential grub-efi-amd64 \
  imagemagick imagemagick-doc kdenlive openshot shotcut flowblade simplescreenrecorder recordmydesktop kazam \
  vokoscreen obs-studio peek vlc mplayer kmplayer kmplot smplayer xplayer qmmp dragonplayer kaffeine pidgin gajim \
