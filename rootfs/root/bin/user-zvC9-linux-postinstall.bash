@@ -42,7 +42,7 @@ user-zvC9-sync
 nano /etc/default/grub
 user-zvC9-sync
 
-update-grub
+update-grub || user-zvC9-error 6 "seems like grub config (/etc/default/grub) is wrong, you must edit it (and then you can run this script again)"
 user-zvC9-sync
 
 if user-zvC9-isMint ; then
