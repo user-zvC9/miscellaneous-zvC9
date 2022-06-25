@@ -215,7 +215,7 @@ apt --download-only install openssh-server apache2 libapache2-mod-php php \
   tftpd lxc lxc-utils uget dovecot-imapd dovecot-pop3d dovecot-mysql dovecot-pgsql \
   gocryptfs sirikali zulumount-gui zulumount-gui zulucrypt-cli zulucrypt-gui zulupolkit \
   zulusafe-cli vtun sshpass seccure scrypt quicktun patator john openssh-sftp-server \
-  pssh ssh-tools sshesame gesftpserver lxc lxc-utils photopc autossh bing zssh zrsync zurl xrdp \
+  pssh ssh-tools sshesame gesftpserver lxc lxc-utils photopc autossh bing zssh zsync zurl xrdp \
   xprobe xorp xorgxrdp xchat vtun vpnc vnstat vde2 tcpspy       || user-zvC9-error 5 "apt: download packages"
 # also: novnc 
 user-zvC9-sync
