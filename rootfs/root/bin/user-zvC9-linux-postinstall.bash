@@ -73,11 +73,31 @@ user-zvC9-sync
 
 # also: gocryptfs sirikali zulumount-gui zulumount-gui
 apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted calc brasero xorriso k3b geany gedit mousepad pluma \
- atril evince vim aqemu qemu-system-gui gimp gimp-help-ru geeqie xsane hplip-gui g++ gcc gcc-doc build-essential grub-efi-amd64 \
+ atril evince vim aqemu qemu-system-gui qemu-utils qemu-system-x86 qemu-system-common qemu-system-data qemu-kvm \
+ ovmf \
+ mate-calc galculator bc dc octave qalc qalculate-gtk  \
+ bash bash-completion bash-doc command-not-found  \
+ zstd p7zip-full rsync openssh-client sshfs  \
+ mercurial git subversion git-doc diffutils-doc diffutils autopoint binutils \
+ autoconf automake libtool bison gdb gdb-doc gdbserver valgrind \
+ virt-manager    \
+ sane-utils blender dcraw dia djview4 djview3 dov4l dv4l enfuse eom exif exiv2 gocr gnuift goxel gpicview \
+ graphviz  gtkmorph gwenview handbrake-cli hugin hugin-tools icoutils inkscape kino kolourpaint kruler ocrad \
+ ocrmypdf okular openscad pdf2svg pdfarranger pencil2d pfsglview pfstmo pfstools pfsview photocollage photoflare \
+ phototonic pixelize pixmap png23d png2html pngmeta pqiv pstoedit qiv qosmic qpdfview rawtherapee renrot rgbpaint \
+ sagcad sagcad-doc sane xsane scribus showfoto solvespace scanv streamer sxiv tesseract-ocr tesseract-ocr-eng \
+ tesseract-ocr-rus tgif tintii tpp ttv tupi tuxpaint unpaper uvccapture v4l-conf vamps vgrabbj viewnior \
+ wings3d x264  xaos xfig xcftools xine-console xine-ui xli xloadimage xmorph xpaint xzgv yagf yasw zbar-tools \
+ pdf2djvu pdf2svg img2pdf k2pdfopt pod2pdf rst2pdf wkhtmltopdf   \
+ iputils-arping iptables iproute2 iputils-ping iputils-tracepath isc-dhcp-client iw lftp net-tools mtr-tiny \
+ network-manager openvpn tcpdump telnet whois transmission-gtk wireless-regdb wireless-tools wpasupplicant \
+ nmap nmapsi4 hexchat ktorrent deluge qbittorret nftables mktorrent ntp ntpdate putty-tools rtorrent traceroute \
+ wireshark wireshark-gtp wireshark-qt wireguard wireguard-tools tinyirc tcpstat tcptrace tcptraceroute  \
+ gimp gimp-help-ru geeqie xsane hplip-gui g++ gcc gcc-doc build-essential grub-efi-amd64 \
  imagemagick imagemagick-doc kdenlive openshot shotcut flowblade simplescreenrecorder recordmydesktop kazam \
  vokoscreen obs-studio peek vlc mplayer kmplayer kmplot smplayer xplayer qmmp dragonplayer kaffeine pidgin gajim \
  kopete kde-telepathy evolution thunderbird  qbittorrent transmission-gtk aptitude rtorrent mktorrent deluge kget \
- ktorrent kgpg smbclient nmap nmapsi4 memtest86+ florence galculator autoconf automake libtool ninja-build \
+ ktorrent kgpg smbclient nmap nmapsi4 memtest86+ florence  autoconf automake libtool ninja-build \
  libtool-doc remmina remmina-plugin-nx remmina-plugin-rdp remmina-plugin-vnc remmina-plugin-spice keepass2 \
  keepass2-doc keepassx keepassxc gdisk fdisk gparted parted powertop nethogs genisoimage audacity flac x11vnc ssvnc \
  tigervnc-viewer kwave lame lame-doc  ffmpeg ffmpeg-doc gdb hwinfo gddrescue x2vnc whois traceroute  tilda  \
@@ -189,11 +209,14 @@ fi
 user-zvC9-sync
 
 apt --download-only install openssh-server apache2 libapache2-mod-php php \
-  php-xml php-mysql mariadb-server vsftpd samba sympathy isc-dhcp-server \
+  php-xml php-mysql mariadb-server mysql-client mysql-common \
+  vsftpd samba sympathy isc-dhcp-server postgresql postgresql-client \
   bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
   tftpd lxc lxc-utils uget dovecot-imapd dovecot-pop3d dovecot-mysql dovecot-pgsql \
   gocryptfs sirikali zulumount-gui zulumount-gui zulucrypt-cli zulucrypt-gui zulupolkit \
-  zulusafe-cli vtun sshpass seccure scrypt quicktun patator john openssh-sftp-server  || user-zvC9-error 5 "apt: download packages"
+  zulusafe-cli vtun sshpass seccure scrypt quicktun patator john openssh-sftp-server \
+  pssh ssh-tools sshesame gesftpserver lxc lxc-utils photopc autossh bing zssh zrsync zurl xrdp \
+  xprobe xorp xorgxrdp xchat vtun vpnc vnstat vde2 tcpspy       || user-zvC9-error 5 "apt: download packages"
 # also: novnc 
 user-zvC9-sync
 
