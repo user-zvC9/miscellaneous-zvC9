@@ -6,6 +6,21 @@ function user-zvC9-sync () {
  sync
 }
 
+function user-zvC9-isMint () {
+	if grep -i "Linux Mint" /etc/os-release ; then
+		echo "Detected Linux Mint system"
+		sleep 3
+		return 0
+	else
+		echo "Detected NOT Linux Mint system"
+		sleep 3
+		return 1
+	fi
+}
+
+visudo
+user-zvC9-sync
+
 dpkg-reconfigure keyboard-configuration
 user-zvC9-sync
 
@@ -15,7 +30,12 @@ user-zvC9-sync
 update-grub
 user-zvC9-sync
 
-if grep -i "Linux Mint" /etc/os-release ; then
+if user-zvC9-isMint ; then
+	mintsources
+	user-zvC9-sync
+fi
+
+if user-zvC9-isMint ; then
 	mint_packages="mint-meta-xfce  mint-meta-codecs"
 else
 	mint_packages=""
@@ -24,7 +44,8 @@ fi
 apt update
 user-zvC9-sync
 
-if grep -i "Linux Mint" /etc/os-release ; then
+
+if user-zvC9-isMint ; then
 	mintupdate-cli upgrade
 	user-zvC9-sync
 	apt update
