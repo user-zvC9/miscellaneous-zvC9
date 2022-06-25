@@ -6,6 +6,21 @@ function user-zvC9-sync () {
  sync
 }
 
+function user-zvC9-error { # error code msg, error msg, error
+ if [ $# -ge 2 ] ; then
+  echo "$2"
+  exit $1
+ else
+  if [ $# -ge 1 ] ; then
+   echo "$1"
+   exit 1
+  else
+   exit 1
+  fi
+ fi
+}
+
+
 function user-zvC9-isMint () {
 	if grep -i "Linux Mint" /etc/os-release ; then
 		echo "Detected Linux Mint system"
@@ -41,17 +56,17 @@ else
 	mint_packages=""
 fi
 
-apt update
+apt update || user-zvC9-error 1 update
 user-zvC9-sync
 
 
 if user-zvC9-isMint ; then
-	mintupdate-cli upgrade
+	mintupdate-cli upgrade || user-zvC9-error 1 mintupdate-cli upgrade
 	user-zvC9-sync
-	apt update
-	mintupdate-cli upgrade
+	apt update || user-zvC9-error 1 update
+	mintupdate-cli upgrade || user-zvC9-error 1 mintupdate-cli upgrade
 else
-	apt dist-upgrade
+	apt dist-upgrade || user-zvC9-error 1 dist-upgrade
 fi
 
 user-zvC9-sync
@@ -79,7 +94,7 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted c
  procinfo syslinux-utils xscreensaver linuxvnc  \
  nftables ftp openssh-client aria2 atftp filezilla ftp-ssl ftpcopy gftp gftp-gtk gftp-text inetutils-ftp jftp  \
  wput zftp putty-tools ncftp tftp tnftp  \
- $mint_packages
+ $mint_packages  || user-zvC9-error 2 "install 1"
  
 user-zvC9-sync
 
@@ -92,13 +107,13 @@ user-zvC9-sync
 apt install libpcre3-dev libsdl2-dev libsdl2-image-dev libgtk3.0-cil-dev python3-sphinx  libgnutls28-dev \
 	libusb-1.0-0-dev  \
         libvde-dev libvncserver-dev libvdeplug-dev libgtkmm-3.0-dev libusb-1.0-0-dev libcap-ng-dev \
-        libattr1-dev python3-sphinx-rtd-theme libpcre3-dev gettext
+        libattr1-dev python3-sphinx-rtd-theme libpcre3-dev gettext  || user-zvC9-error 3 "install 2"
 user-zvC9-sync
 
 update-alternatives --config iptables
 user-zvC9-sync
 
-apt install samba
+apt install samba  || user-zvC9-error 4 "install 3"
 systemctl stop smbd
 systemctl stop nmbd
 systemctl disable smbd
@@ -175,7 +190,7 @@ apt --download-only install openssh-server apache2 libapache2-mod-php php \
   bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
   tftpd lxc lxc-utils uget dovecot-imapd dovecot-pop3d dovecot-mysql dovecot-pgsql \
   gocryptfs sirikali zulumount-gui zulumount-gui zulucrypt-cli zulucrypt-gui zulupolkit \
-  zulusafe-cli vtun sshpass seccure scrypt quicktun patator john openssh-sftp-server
+  zulusafe-cli vtun sshpass seccure scrypt quicktun patator john openssh-sftp-server  || user-zvC9-error 5 "apt: download packages"
 # also: novnc 
 user-zvC9-sync
 
