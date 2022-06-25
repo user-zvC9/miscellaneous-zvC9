@@ -98,6 +98,9 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted c
  
 user-zvC9-sync
 
+# for apt-file:
+apt update
+user-zvC9-sync
 
 
 #apt purge bsd-mailx postfix
