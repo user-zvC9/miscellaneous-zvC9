@@ -209,7 +209,7 @@ fi
 user-zvC9-sync
 
 apt --download-only install openssh-server apache2 libapache2-mod-php php \
-  php-xml php-mysql mariadb-server mysql-client mysql-common \
+  php-xml php-mysql mariadb-server mariadb-client mysql-common \
   vsftpd samba sympathy isc-dhcp-server postgresql postgresql-client \
   bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
   tftpd lxc lxc-utils uget dovecot-imapd dovecot-pop3d dovecot-mysql dovecot-pgsql \
