@@ -115,7 +115,8 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted c
  nftables ftp openssh-client aria2 atftp filezilla ftp-ssl ftpcopy gftp gftp-gtk gftp-text inetutils-ftp jftp  \
  wput zftp putty-tools ncftp tftp tnftp \
  libvirt-clients libvirt-daemon-driver-qemu libvirt-daemon-driver-vbox libvirt-daemon-system \
- libvirt-daemon-system-systemd libvirt-daemon libvirt-dbus libvirt-doc  \
+ libvirt-daemon-system-systemd libvirt-daemon libvirt-dbus libvirt-doc \
+ spice-client-gtk gir1.2-spiceclientglib-2.0 gir1.2-spiceclientgtk-3.0 \
  $mint_packages  || user-zvC9-error 2 "install 1"
  
 user-zvC9-sync
@@ -220,7 +221,9 @@ apt --download-only install openssh-server apache2 libapache2-mod-php php \
   pssh ssh-tools sshesame gesftpserver lxc lxc-utils photopc autossh bing zssh zsync zurl xrdp \
   xprobe xorp xorgxrdp xchat vtun vpnc vnstat vde2 tcpspy \
   libvirt-daemon-driver-lxc libvirt-daemon-driver-storage-gluster libvirt-daemon-driver-storage-rbd \
-  libvirt-daemon-driver-storage-zfs libvirt-daemon-driver-xen libvirt-daemon-system-sysv       || user-zvC9-error 5 "apt: download packages"
+  libvirt-daemon-driver-storage-zfs libvirt-daemon-driver-xen libvirt-daemon-system-sysv \
+  spice-vdagent      || user-zvC9-error 5 "apt: download packages"
 # also: novnc 
 user-zvC9-sync
+echo -e "\\n\\ndone, success"
 
