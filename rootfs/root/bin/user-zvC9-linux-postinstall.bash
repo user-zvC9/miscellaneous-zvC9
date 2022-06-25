@@ -35,6 +35,7 @@ fi
 
 user-zvC9-sync
 
+# also: gocryptfs sirikali zulumount-gui zulumount-gui
 apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted calc brasero xorriso k3b geany gedit mousepad pluma \
  atril evince vim aqemu qemu-system-gui gimp gimp-help-ru geeqie xsane hplip-gui g++ gcc gcc-doc build-essential grub-efi-amd64 \
  imagemagick imagemagick-doc kdenlive openshot shotcut flowblade simplescreenrecorder recordmydesktop kazam \
@@ -45,8 +46,8 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted c
  keepass2-doc keepassx keepassxc gdisk fdisk gparted parted powertop nethogs genisoimage audacity flac x11vnc ssvnc \
  tigervnc-viewer kwave lame lame-doc  ffmpeg ffmpeg-doc gdb hwinfo gddrescue x2vnc whois traceroute  tilda  \
  adb scrcpy fastboot grub-efi-amd64 encfs ecryptfs-utils virtualbox-qt virtualbox-guest-additions-iso \
- virtualbox-ext-pack parole ristretto pix apt-file git cmake cmake-doc cmake-qt-gui keyutils tomb \
- cryptsetup cryptsetup-bin cryptsetup-initramfs \
+ virtualbox-ext-pack parole ristretto pix apt-file git cmake cmake-doc cmake-qt-gui keyutils tomb seahorse \
+ cryptsetup cryptsetup-bin cryptsetup-initramfs  \
  libpcre3-dev \
  guvcview cutecom minicom simple-scan links links2 lynx xarchiver p7zip-full rsync file-roller \
  gdebi lftp wget curl curlftpfs qtcreator catfish grep util-linux findutils binutils net-tools wireless-tools \
@@ -151,6 +152,9 @@ user-zvC9-sync
 apt --download-only install openssh-server apache2 libapache2-mod-php php \
   php-xml php-mysql mariadb-server vsftpd samba sympathy isc-dhcp-server \
   bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
-  tftpd lxc lxc-utils uget dovecot-imapd dovecot-pop3d dovecot-mysql dovecot-pgsql
+  tftpd lxc lxc-utils uget dovecot-imapd dovecot-pop3d dovecot-mysql dovecot-pgsql \
+  gocryptfs sirikali zulumount-gui zulumount-gui zulucrypt-cli zulucrypt-gui zulupolkit \
+  zulusafe-cli vtun sshpass seccure scrypt quicktun patator john openssh-sftp-server
+# also: novnc 
 user-zvC9-sync
 
