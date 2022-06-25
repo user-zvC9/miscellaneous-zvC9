@@ -70,7 +70,7 @@ user-zvC9-sync
 apt install libpcre3-dev libsdl2-dev libsdl2-image-dev libgtk3.0-cil-dev python3-sphinx  libgnutls28-dev \
 	libusb-1.0-0-dev  \
         libvde-dev libvncserver-dev libvdeplug-dev libgtkmm-3.0-dev libusb-1.0-0-dev libcap-ng-dev \
-        libattr1-dev python3-sphinx-rtd-theme libpcre3-dev
+        libattr1-dev python3-sphinx-rtd-theme libpcre3-dev gettext
 user-zvC9-sync
 
 update-alternatives --config iptables
