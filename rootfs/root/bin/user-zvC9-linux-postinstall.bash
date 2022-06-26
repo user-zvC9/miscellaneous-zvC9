@@ -7,6 +7,7 @@ function user-zvC9-sync () {
 }
 
 function user-zvC9-error { # error code msg, error msg, error
+ echo -n "Error (aborting): "
  if [ $# -ge 2 ] ; then
   echo "$2"
   exit $1
@@ -15,6 +16,7 @@ function user-zvC9-error { # error code msg, error msg, error
    echo "$1"
    exit 1
   else
+   echo
    exit 1
   fi
  fi
@@ -23,12 +25,12 @@ function user-zvC9-error { # error code msg, error msg, error
 
 function user-zvC9-isMint () {
 	if grep -i "Linux Mint" /etc/os-release ; then
-		echo "Detected Linux Mint system"
-		sleep 3
+		echo -e "\\n\\nDetected Linux Mint system\\n\\n"
+		#sleep 3
 		return 0
 	else
-		echo "Detected NOT Linux Mint system"
-		sleep 3
+		echo -e "\\n\\nDetected Linux Mint system\\n\\n"
+		#sleep 3
 		return 1
 	fi
 }
@@ -85,7 +87,7 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen tmux mc gpar
  subversion diffutils-doc diffutils autopoint binutils \
  autoconf automake libtool bison gdb gdb-doc gdbserver valgrind \
  virt-manager virtinst   \
- quota reizer4progs reizerfsprogs  msr-tools lvm2 jfsutils iotop hdparm e2fsprogs efibootmgr dmsetup  dmraid dkms btrfs-progs \
+ quota reizes4progs reizesfsprogs  msr-tools lvm2 jfsutils iotop hdparm e2fsprogs efibootmgr dmsetup  dmraid dkms btrfs-progs \
  bubblewrap apt-utils f2fs-tools hwinfo gufw aptitude menulibre ifupdown exfat-fuse exfat-utils ntfs-3g dosfstools  \
  sane-utils blender dcraw dia djview4 djview3 dov4l dv4l enfuse eom exif exiv2 gocr gnuift goxel gpicview \
  graphviz  gtkmorph gwenview handbrake-cli hugin hugin-tools icoutils inkscape kino kolourpaint kruler ocrad \
