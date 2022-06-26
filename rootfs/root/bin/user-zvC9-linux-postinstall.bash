@@ -72,22 +72,28 @@ fi
 user-zvC9-sync
 
 # also: gocryptfs sirikali zulumount-gui zulumount-gui
-apt --no-install-recommends install netdiag htop vlock pwgen screen mc gparted calc brasero xorriso k3b geany gedit mousepad pluma \
+apt --no-install-recommends install netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorriso k3b geany gedit mousepad pluma \
  atril evince vim aqemu qemu-system-gui qemu-utils qemu-system-x86 qemu-system-common qemu-system-data qemu-kvm \
  ovmf \
+ indent indent-doc \
+ timeshift time sed rfkill mugshot germinate console-setup catfish  \
  mate-calc galculator bc dc octave qalc qalculate-gtk  \
  bash bash-completion bash-doc command-not-found  \
  zstd p7zip-full rsync openssh-client sshfs  \
- mercurial git subversion git-doc diffutils-doc diffutils autopoint binutils \
+ mercurial git git-man git-doc vim-doc vim nano libreoffice-writer libreoffice-draw libreoffice-calc \
+ libreoffice-impress libreoffice libreoffice-l10n-ru libreoffice-help-ru tweak  \
+ subversion diffutils-doc diffutils autopoint binutils \
  autoconf automake libtool bison gdb gdb-doc gdbserver valgrind \
- virt-manager    \
+ virt-manager virtinst   \
+ quota reizer4progs reizerfsprogs  msr-tools lvm2 jfsutils iotop hdparm e2fsprogs efibootmgr dmsetup  dmraid dkms btrfs-progs \
+ bubblewrap apt-utils f2fs-tools hwinfo gufw aptitude menulibre ifupdown exfat-fuse exfat-utils ntfs-3g dosfstools  \
  sane-utils blender dcraw dia djview4 djview3 dov4l dv4l enfuse eom exif exiv2 gocr gnuift goxel gpicview \
  graphviz  gtkmorph gwenview handbrake-cli hugin hugin-tools icoutils inkscape kino kolourpaint kruler ocrad \
  ocrmypdf okular openscad pdf2svg pdfarranger pencil2d pfsglview pfstmo pfstools pfsview photocollage photoflare \
  phototonic pixelize pixmap png23d png2html pngmeta pqiv pstoedit qiv qosmic qpdfview rawtherapee renrot rgbpaint \
  sagcad sagcad-doc sane xsane scribus showfoto solvespace scantv streamer sxiv tesseract-ocr tesseract-ocr-eng \
  tesseract-ocr-rus tgif tintii tpp ttv tupi tuxpaint unpaper uvccapture v4l-conf vamps vgrabbj viewnior \
- wings3d x264  xaos xfig xcftools xine-console xine-ui xli xloadimage xmorph xpaint xzgv yagf yasw zbar-tools \
+ wings3d x264 x265 xaos xfig xcftools xine-console xine-ui xli xloadimage xmorph xpaint xzgv yagf yasw zbar-tools \
  pdf2djvu pdf2svg img2pdf k2pdfopt pod2pdf rst2pdf wkhtmltopdf   \
  iputils-arping iptables iproute2 iputils-ping iputils-tracepath isc-dhcp-client iw lftp net-tools mtr-tiny \
  network-manager openvpn tcpdump telnet whois transmission-gtk wireless-regdb wireless-tools wpasupplicant \
@@ -211,7 +217,7 @@ fi
 
 user-zvC9-sync
 
-apt --download-only install openssh-server apache2 libapache2-mod-php php \
+apt --download-only install openssh-server apache2 apache2-doc libapache2-mod-php php \
   php-xml php-mysql mariadb-server mariadb-client mysql-common \
   vsftpd samba sympathy isc-dhcp-server postgresql postgresql-client \
   bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
@@ -222,7 +228,7 @@ apt --download-only install openssh-server apache2 libapache2-mod-php php \
   xprobe xorp xorgxrdp xchat vtun vpnc vnstat vde2 tcpspy \
   libvirt-daemon-driver-lxc libvirt-daemon-driver-storage-gluster libvirt-daemon-driver-storage-rbd \
   libvirt-daemon-driver-storage-zfs libvirt-daemon-driver-xen libvirt-daemon-system-sysv \
-  spice-vdagent      || user-zvC9-error 5 "apt: download packages"
+  spice-vdagent ansible ansible-doc ansible-lint at aide       || user-zvC9-error 5 "apt: download packages"
 # also: novnc 
 user-zvC9-sync
 echo -e "\\n\\ndone, success"
