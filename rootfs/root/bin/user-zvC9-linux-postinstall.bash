@@ -129,6 +129,9 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen tmux mc gpar
  
 user-zvC9-sync
 
+systemctl  disable NetworkManager-wait-online.service
+systemctl  disable network-online.target
+
 # for apt-file:
 apt update
 user-zvC9-sync
