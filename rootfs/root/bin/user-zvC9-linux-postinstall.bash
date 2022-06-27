@@ -87,6 +87,7 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen tmux mc gpar
  subversion diffutils-doc diffutils autopoint binutils \
  autoconf automake libtool bison gdb gdb-doc gdbserver valgrind \
  virt-manager virtinst   \
+ rhythmbox rhythmbox-doc \
  quota reiser4progs reiserfsprogs  msr-tools lvm2 jfsutils iotop hdparm e2fsprogs efibootmgr dmsetup  dmraid dkms btrfs-progs \
  bubblewrap apt-utils f2fs-tools hwinfo gufw aptitude menulibre ifupdown exfat-fuse exfat-utils ntfs-3g dosfstools  \
  sane-utils blender dcraw dia djview4 djview3 dov4l dv4l enfuse eom exif exiv2 gocr gnuift goxel gpicview \
