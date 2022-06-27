@@ -74,7 +74,8 @@ fi
 user-zvC9-sync
 
 # also: gocryptfs sirikali zulumount-gui zulumount-gui
-apt --no-install-recommends install netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorriso k3b geany gedit mousepad pluma \
+apt --no-install-recommends install netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorriso \
+ k3b-i18n k3b geany gedit mousepad pluma \
  atril evince vim aqemu qemu-system-gui qemu-utils qemu-system-x86 qemu-system-common qemu-system-data qemu-kvm \
  ovmf \
  indent indent-doc \
