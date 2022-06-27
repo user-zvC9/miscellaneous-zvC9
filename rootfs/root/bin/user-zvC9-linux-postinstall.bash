@@ -238,5 +238,9 @@ apt --download-only install openssh-server apache2 apache2-doc libapache2-mod-ph
   spice-vdagent ansible ansible-doc ansible-lint at aide       || user-zvC9-error 5 "apt: download packages"
 # also: novnc 
 user-zvC9-sync
+
+hp-plugin || user-zvC9-error 8 "hp-plugin"
+user-zvC9-sync
+
 echo -e "\\n\\ndone, success"
 
