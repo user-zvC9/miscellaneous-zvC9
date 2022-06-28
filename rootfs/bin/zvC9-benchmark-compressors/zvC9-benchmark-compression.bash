@@ -3,6 +3,8 @@
 
 # this directory will be compressed
 name="compress_me"
+# "yes" or "no"
+run_zstd=no
 
 # next lines you can skip
 
@@ -70,6 +72,19 @@ for compressor in gzip  bzip2  xz  ; do
  done
 done
 
+if test "$run_zstd" = yes ; then
+ compressor=zstd
+ for ((level=1;level<20;++level)) ; do
+  echo compressor: $compressor
+  echo level: $level
+  echo -n "$compressor -$level: byte count=" >> $results_file
+  echo -e "\\n$compressor -$level: time:" >> "$result_times_file"
+  echo -e "\\n$compressor -$level speed:" >> $result_dd_file
+  user-zvC9-sync
+  tar -c "$name" | dd bs=1M status=progress | dd bs=1M  2>> $result_dd_file | /bin/time --append -o "$result_times_file" $compressor -$level |  wc --bytes >> $results_file
+  user-zvC9-sync
+ done
+fi
 
 user-zvC9-extract-times
 user-zvC9-sync
