@@ -22,6 +22,17 @@ function user-zvC9-error { # error code msg, error msg, error
  fi
 }
 
+function zvC9-user-confirms-continue-or-exit {
+ echo Continue? \(Продолжить?\)
+ echo -n \"y\" Enter or \"n\" Enter \("y" Enter или "n" Enter\): 
+ read answer
+ if test "x$answer" = "xy" ; then
+  :
+ else
+  echo "Aborted by user (отменено пользователем)"
+  exit 120
+ fi
+}
 
 function user-zvC9-isMint () {
 	if grep -q -i "Linux Mint" /etc/os-release ; then
@@ -38,19 +49,29 @@ function user-zvC9-isMint () {
 visudo
 user-zvC9-sync
 
+zvC9-user-confirms-continue-or-exit
+
 dpkg-reconfigure keyboard-configuration
 user-zvC9-sync
+
+zvC9-user-confirms-continue-or-exit
 
 nano /etc/default/grub
 user-zvC9-sync
 
+zvC9-user-confirms-continue-or-exit
+
 update-grub || user-zvC9-error 6 "seems like grub config (/etc/default/grub) is wrong, you must edit it (and then you can run this script again)"
 user-zvC9-sync
+
+zvC9-user-confirms-continue-or-exit
 
 if user-zvC9-isMint ; then
 	mintsources
 	user-zvC9-sync
 fi
+
+zvC9-user-confirms-continue-or-exit
 
 if user-zvC9-isMint ; then
 	mint_packages="mint-meta-xfce  mint-meta-codecs"
@@ -61,21 +82,43 @@ fi
 apt update || user-zvC9-error 1 update
 user-zvC9-sync
 
+zvC9-user-confirms-continue-or-exit
 
 if user-zvC9-isMint ; then
+ apt --download-only --yes dist-upgrade
+ user-zvC9-sync
+ 
+ zvC9-user-confirms-continue-or-exit
+ 
 	mintupdate-cli upgrade || user-zvC9-error 1 mintupdate-cli upgrade
 	user-zvC9-sync
+	
+	zvC9-user-confirms-continue-or-exit
+	
 	apt update || user-zvC9-error 1 update
+	apt --download-only --yes dist-upgrade
+	user-zvC9-sync
+	
+	zvC9-user-confirms-continue-or-exit
+	
 	mintupdate-cli upgrade || user-zvC9-error 1 mintupdate-cli upgrade
+	user-zvC9-sync
+	zvC9-user-confirms-continue-or-exit
 else
+ apt --download-only --yes dist-upgrade
+ user-zvC9-sync
+ zvC9-user-confirms-continue-or-exit
+ 
 	apt dist-upgrade || user-zvC9-error 1 dist-upgrade
+	user-zvC9-sync
+	zvC9-user-confirms-continue-or-exit
 fi
 
-user-zvC9-sync
+
 
 # also: gocryptfs sirikali zulumount-gui zulumount-gui
-apt --no-install-recommends install netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorriso \
- k3b-i18n k3b geany gedit mousepad pluma \
+apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorriso \
+ k3b k3b-i18n geany gedit mousepad pluma basez \
  atril evince vim aqemu qemu-system-gui qemu-utils qemu-system-x86 qemu-system-common qemu-system-data qemu-kvm \
  ovmf \
  indent indent-doc \
@@ -127,32 +170,48 @@ apt --no-install-recommends install netdiag htop vlock pwgen screen tmux mc gpar
  libvirt-clients libvirt-daemon-driver-qemu libvirt-daemon-driver-vbox libvirt-daemon-system \
  libvirt-daemon-system-systemd libvirt-daemon libvirt-dbus libvirt-doc \
  spice-client-gtk gir1.2-spiceclientglib-2.0 gir1.2-spiceclientgtk-3.0 \
- $mint_packages  || user-zvC9-error 2 "install 1"
+ $mint_packages"
  
+apt --download-only --yes --no-install-recommends install $apt_pkglist  || user-zvC9-error 2 "install 1 --download-only"
 user-zvC9-sync
+zvC9-user-confirms-continue-or-exit
+
+apt --no-install-recommends install $apt_pkglist  || user-zvC9-error 2 "install 1"
+user-zvC9-sync
+zvC9-user-confirms-continue-or-exit
+ 
 
 
 systemctl  disable NetworkManager-wait-online.service
 systemctl  disable network-online.target
 user-zvC9-sync
+zvC9-user-confirms-continue-or-exit
 
 # for apt-file:
-apt update
+apt update || user-zvC9-error 2 "apt update for apt-file"
 user-zvC9-sync
+zvC9-user-confirms-continue-or-exit
 
 
-#apt purge bsd-mailx postfix
+#apt purge bsd-mailx postfix (recommended packages, they are now ignored (--no-install-recommends))
 #user-zvC9-sync
 
 # this is for qemu 7.0.0, also need glib and pixman
-apt install libpcre3-dev libsdl2-dev libsdl2-image-dev libgtk3.0-cil-dev python3-sphinx  libgnutls28-dev \
-	libusb-1.0-0-dev  \
+apt_pkglist="libpcre3-dev libsdl2-dev libsdl2-image-dev libgtk3.0-cil-dev python3-sphinx  libgnutls28-dev \
+	       libusb-1.0-0-dev  \
         libvde-dev libvncserver-dev libvdeplug-dev libgtkmm-3.0-dev libusb-1.0-0-dev libcap-ng-dev \
-        libattr1-dev python3-sphinx-rtd-theme libpcre3-dev gettext  || user-zvC9-error 3 "install 2"
+        libattr1-dev python3-sphinx-rtd-theme libpcre3-dev gettext"
+apt --download-only --yes install $apt_pkglist  || user-zvC9-error 3 "install 2 --download-only"
 user-zvC9-sync
+zvC9-user-confirms-continue-or-exit
+
+apt  install $apt_pkglist  || user-zvC9-error 3 "install 2"
+user-zvC9-sync
+zvC9-user-confirms-continue-or-exit
 
 update-alternatives --config iptables
 user-zvC9-sync
+zvC9-user-confirms-continue-or-exit
 
 apt install samba  || user-zvC9-error 4 "install 3"
 systemctl stop smbd
@@ -160,6 +219,7 @@ systemctl stop nmbd
 systemctl disable smbd
 systemctl disable nmbd
 user-zvC9-sync
+zvC9-user-confirms-continue-or-exit
  
 # apt install ansible libopenusb-dev python3-sphinx-bootstrap-theme
 
@@ -226,7 +286,7 @@ fi
 
 user-zvC9-sync
 
-apt --download-only install openssh-server apache2 apache2-doc libapache2-mod-php php \
+apt --download-only --yes install openssh-server apache2 apache2-doc libapache2-mod-php php \
   php-xml php-mysql mariadb-server mariadb-client mysql-common \
   vsftpd samba sympathy isc-dhcp-server postgresql postgresql-client \
   bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
@@ -240,6 +300,7 @@ apt --download-only install openssh-server apache2 apache2-doc libapache2-mod-ph
   spice-vdagent ansible ansible-doc ansible-lint at aide       || user-zvC9-error 5 "apt: download packages"
 # also: novnc 
 user-zvC9-sync
+zvC9-user-confirms-continue-or-exit
 
 hp-plugin || user-zvC9-error 8 "hp-plugin"
 user-zvC9-sync
