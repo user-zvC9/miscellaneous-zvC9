@@ -4,7 +4,7 @@
 # this directory will be compressed
 name="compress_me"
 # "yes" or "no"
-run_zstd=no
+run_zstd=yes
 
 # next lines you can skip
 
@@ -12,14 +12,21 @@ function user-zvC9-sync {
  sync
 }
 
+function zvC9-rm-if-not-devnull {
+ if test "$1" != "/dev/null" ; then
+  rm -fv "$1"
+ fi
+}
+
 function user-zvC9-extract-times {
  cat "${result_times_file}" | \
-  sed -E -e "/time:/d" | sed -E -e "s/.* ([0-9]*):([0-9.]*)elapsed.*/\\1 \\2/g" | \
+  sed -E -e "/time:/d" | sed -E -e "s/.* ([0-9]+):([0-9.]+)elapsed.*/0 \\1 \\2/g" | \
+  sed -E -e "s/.* ([0-9]+):([0-9]+):([0-9.]+)elapsed.*/\\1 \\2 \\3/g" | \
   sed -E -e "s/\\./,/g" | sed -E -e "/inputs/d" | sed -E -e "/^\\s*\$/d" > ${result_times_file_short}
 
 }
 function user-zvC9-extract-compressors-levels-and-sizes-for-libreoffice {
- cat "$results_file" | sed -e "s/^\([^ ]*\) -\([0-9]*\): byte count=\([0-9]*\)\$/\\1 =\"-\\2\" \\3/g" > $results_file_for_libreoffice_calc
+ cat "$results_file" | sed -E -e "s/^([^ ]+) -([^ ]+) byte_count: ([0-9]+)\$/\\1 =\"-\\2\" \\3/g" > $results_file_for_libreoffice_calc
 }
 
 export LC_ALL=C
@@ -35,11 +42,11 @@ result_times_file_short="compression-times-short.txt"
 ## can be file or /dev/null
 result_dd_file="/dev/null" ## not accurate
 
-rm -fv "$results_file"
-rm -fv "$result_times_file"
-if test "$result_dd_file" != "/dev/null" ; then
- rm -fv "$result_dd_file"
-fi
+zvC9-rm-if-not-devnull "$results_file"
+zvC9-rm-if-not-devnull "$result_times_file"
+zvC9-rm-if-not-devnull "$result_dd_file"
+zvC9-rm-if-not-devnull "$result_times_file_short"
+zvC9-rm-if-not-devnull "$results_file_for_libreoffice_calc"
 user-zvC9-sync
 
 echo -n "UNCOMPRESSED -NOLEVEL byte_count: " >> $results_file
@@ -57,7 +64,7 @@ for compressor in gzip  bzip2  xz  ; do
  if [ "x$compressor" = "xxz" ] ; then
   echo compressor: xz
   echo level: -0
-  echo -n "xz -0: byte_count: " >> $results_file
+  echo -n "xz -0 byte_count: " >> $results_file
   echo -e "\\nxz -0 time: " >> "$result_times_file"
   echo -e "\\nxz -0 dd_speed: " >> $result_dd_file
   user-zvC9-sync
