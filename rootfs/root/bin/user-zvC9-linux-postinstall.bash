@@ -85,7 +85,7 @@ user-zvC9-sync
 zvC9-user-confirms-continue-or-exit
 
 if user-zvC9-isMint ; then
- apt --download-only --yes dist-upgrade
+ apt-get --download-only --yes dist-upgrade
  user-zvC9-sync
  
  zvC9-user-confirms-continue-or-exit
@@ -96,7 +96,7 @@ if user-zvC9-isMint ; then
 	zvC9-user-confirms-continue-or-exit
 	
 	apt update || user-zvC9-error 1 update
-	apt --download-only --yes dist-upgrade
+	apt-get --download-only --yes dist-upgrade
 	user-zvC9-sync
 	
 	zvC9-user-confirms-continue-or-exit
@@ -105,7 +105,7 @@ if user-zvC9-isMint ; then
 	user-zvC9-sync
 	zvC9-user-confirms-continue-or-exit
 else
- apt --download-only --yes dist-upgrade
+ apt-get --download-only --yes dist-upgrade
  user-zvC9-sync
  zvC9-user-confirms-continue-or-exit
  
@@ -172,7 +172,7 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  spice-client-gtk gir1.2-spiceclientglib-2.0 gir1.2-spiceclientgtk-3.0 \
  $mint_packages"
  
-apt --download-only --yes --no-install-recommends install $apt_pkglist  || user-zvC9-error 2 "install 1 --download-only"
+apt-get --download-only --yes --no-install-recommends install $apt_pkglist  || user-zvC9-error 2 "install 1 --download-only"
 user-zvC9-sync
 zvC9-user-confirms-continue-or-exit
 
@@ -201,7 +201,7 @@ apt_pkglist="libpcre3-dev libsdl2-dev libsdl2-image-dev libgtk3.0-cil-dev python
 	       libusb-1.0-0-dev  \
         libvde-dev libvncserver-dev libvdeplug-dev libgtkmm-3.0-dev libusb-1.0-0-dev libcap-ng-dev \
         libattr1-dev python3-sphinx-rtd-theme libpcre3-dev gettext"
-apt --download-only --yes install $apt_pkglist  || user-zvC9-error 3 "install 2 --download-only"
+apt-get --download-only --yes install $apt_pkglist  || user-zvC9-error 3 "install 2 --download-only"
 user-zvC9-sync
 zvC9-user-confirms-continue-or-exit
 
@@ -286,7 +286,7 @@ fi
 
 user-zvC9-sync
 
-apt --download-only --yes install openssh-server apache2 apache2-doc libapache2-mod-php php \
+apt-get --download-only --yes install openssh-server apache2 apache2-doc libapache2-mod-php php \
   php-xml php-mysql mariadb-server mariadb-client mysql-common \
   vsftpd samba sympathy isc-dhcp-server postgresql postgresql-client \
   bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
