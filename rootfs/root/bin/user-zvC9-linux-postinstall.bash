@@ -134,11 +134,14 @@ fi
 
 
 
-# also: gocryptfs sirikali zulumount-gui zulumount-gui
+## also: gocryptfs sirikali zulumount-gui zulumount-gui
+## pkg: ipip?
 apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorriso \
  k3b k3b-i18n geany gedit mousepad pluma basez \
  atril evince vim aqemu qemu-system-gui qemu-utils qemu-system-x86 qemu-system-common qemu-system-data qemu-kvm \
  ovmf \
+ bridge-utils  \
+ kdiff3 kdiff3-doc kdiff3-qt iputils-clockdiff tkcvs imediff \
  indent indent-doc \
  timeshift time sed rfkill mugshot germinate console-setup catfish  \
  mate-calc galculator bc dc octave qalc qalculate-gtk  \
