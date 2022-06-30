@@ -46,6 +46,23 @@ function user-zvC9-isMint () {
 	fi
 }
 
+
+function zvC9-adjust-etc-default-grub {
+ if test -e /etc/default/grub.zvC9.bak ; then
+  echo skipping /etc/default/grub adjusting \(/etc/default/grub.zvC9.bak exists\)
+ else
+  if cp /etc/default/grub /etc/default/grub.zvC9.bak ; then
+   cat /etc/default/grub.zvC9.bak | sed -E -e "s/^(GRUB_TIMEOUT_STYLE=.*)\$/#\\1\\nGRUB_TIMEOUT_STYLE=menu/g" \
+    | sed -E -e "s/^(GRUB_CMDLINE_LINUX_DEFAULT=\"[^\"]\")\$/#\\1\\nGRUB_CMDLINE_LINUX_DEFAULT=\"consoleblank=30\"/g" \
+      > /etc/default/grub
+  else
+   echo error copying /etc/default/grub to /etc/default/grub.zvC9.bak
+   echo Aborting /etc/default/grub adjustment
+   return 1
+  fi
+ fi
+}
+
 visudo
 user-zvC9-sync
 
@@ -56,6 +73,7 @@ user-zvC9-sync
 
 zvC9-user-confirms-continue-or-exit
 
+zvC9-adjust-etc-default-grub
 nano /etc/default/grub
 user-zvC9-sync
 
