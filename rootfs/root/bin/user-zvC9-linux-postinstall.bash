@@ -143,7 +143,7 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  bridge-utils  \
  kdiff3 kdiff3-doc kdiff3-qt iputils-clockdiff tkcvs imediff \
  indent indent-doc \
- timeshift time sed rfkill mugshot germinate console-setup catfish  \
+ timeshift time sed rfkill mugshot germinate console-setup catfish archivemount \
  mate-calc galculator bc dc octave qalc qalculate-gtk  \
  bash bash-completion bash-doc command-not-found  \
  zstd p7zip-full rsync openssh-client sshfs  \
