@@ -140,6 +140,7 @@ fi
 ## fdupes, findup, jdupes, rdfind
 apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorriso \
  k3b k3b-i18n geany gedit mousepad pluma basez \
+ djvubind pdf2djvu pct-scanner-scripts minidjvu gscan2pdf  \
  atril evince vim aqemu qemu-system-gui qemu-utils qemu-system-x86 qemu-system-common qemu-system-data qemu-kvm \
  fdupes perforate jdupes rdfind \
  cpufrequtils ovmf bridge-utils  \
