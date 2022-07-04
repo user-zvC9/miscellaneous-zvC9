@@ -10,13 +10,19 @@ function user-zvC9-error { # error code msg, error msg, error
  echo -n "Error (aborting): "
  if [ $# -ge 2 ] ; then
   echo "$2"
+  echo "Press Enter to exit (нажмите Enter, чтобы выйти)"
+  read
   exit $1
  else
   if [ $# -ge 1 ] ; then
    echo "$1"
+   echo "Press Enter to exit (нажмите Enter, чтобы выйти)"
+   read
    exit 1
   else
    echo
+   echo "Press Enter to exit (нажмите Enter, чтобы выйти)"
+   read
    exit 1
   fi
  fi
@@ -81,6 +87,9 @@ else
 	user-zvC9-sync
 	echo "successful upgrade (выполнено обновление)"
 fi
+
+echo "Press Enter to exit (нажмите Enter, чтобы выйти)"
+read
 
 exit 0
 
