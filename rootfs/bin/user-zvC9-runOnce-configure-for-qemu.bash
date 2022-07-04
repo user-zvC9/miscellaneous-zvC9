@@ -116,6 +116,7 @@ for cdrom in yes no ; do
      echo -e " -device usb-ehci,id=ehci3 \\\\" >> $script_name
      echo -e " -drive file=${prefix}swap.qcow2,format=qcow2,if=ide,media=disk,cache=writethrough \\\\" >> $script_name
      echo -e " -display gtk,window-close=off \\\\" >> $script_name
+     echo -e " -cpu host \\\\" >> $script_name
      
      if test "$kvm" = yes ; then
       echo -e \  \\x2dmachine accel=kvm \\\\ >> $script_name
