@@ -144,6 +144,7 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  atril evince vim aqemu qemu-system-gui qemu-utils qemu-system-x86 qemu-system-common qemu-system-data qemu-kvm \
  fdupes perforate jdupes rdfind \
  cpufrequtils ovmf bridge-utils  \
+ tree zerofree \
  kdiff3 kdiff3-doc kdiff3-qt iputils-clockdiff tkcvs imediff \
  indent indent-doc \
  timeshift time sed rfkill mugshot germinate console-setup catfish archivemount \
