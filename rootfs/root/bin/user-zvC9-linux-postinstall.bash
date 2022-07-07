@@ -142,7 +142,10 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  k3b k3b-i18n geany gedit mousepad pluma basez \
  djvubind pdf2djvu pct-scanner-scripts minidjvu gscan2pdf  \
  atril evince vim aqemu qemu-system-gui qemu-utils qemu-system-x86 qemu-system-common qemu-system-data qemu-kvm \
- fdupes perforate jdupes rdfind \
+ fdupes perforate jdupes rdfind duff \
+ catfish kfind recoll pdfgrep lookup \
+ diskscan \
+ hexcurse bless  \
  cpufrequtils ovmf bridge-utils  \
  tree zerofree \
  kdiff3 kdiff3-doc kdiff3-qt iputils-clockdiff tkcvs imediff \
@@ -157,6 +160,7 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  autoconf automake libtool bison gdb gdb-doc gdbserver valgrind \
  virt-manager virtinst   \
  rhythmbox rhythmbox-doc \
+ isc-dhcp-server \
  quota reiser4progs reiserfsprogs  msr-tools lvm2 jfsutils iotop hdparm e2fsprogs efibootmgr dmsetup  dmraid dkms btrfs-progs \
  bubblewrap apt-utils f2fs-tools hwinfo gufw aptitude menulibre ifupdown exfat-fuse exfat-utils ntfs-3g dosfstools  \
  sane-utils blender dcraw dia djview4 djview3 dov4l dv4l enfuse eom exif exiv2 gocr gnuift goxel gpicview \
@@ -174,6 +178,7 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  gimp gimp-help-ru geeqie xsane hplip-gui g++ gcc gcc-doc build-essential grub-efi-amd64 \
  imagemagick imagemagick-doc kdenlive openshot shotcut flowblade simplescreenrecorder recordmydesktop kazam \
  vokoscreen obs-studio peek vlc mplayer kmplayer kmplot smplayer xplayer qmmp dragonplayer kaffeine pidgin gajim \
+ randomplay mpv \
  kopete kde-telepathy evolution thunderbird  qbittorrent transmission-gtk aptitude rtorrent mktorrent deluge kget \
  ktorrent kgpg smbclient nmap nmapsi4 memtest86+ florence  autoconf automake libtool ninja-build \
  libtool-doc remmina remmina-plugin-nx remmina-plugin-rdp remmina-plugin-vnc remmina-plugin-spice keepass2 \
@@ -188,6 +193,7 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  wpasupplicant hasciicam pdfarranger pdfchain pdfsam pdfshuffler pdftk gimagereader  \
  tesseract-ocr-rus gscan2pdf quodlibet h264enc xvidenc simpleburn ogmrip ogmrip-doc ogmrip-plugins \
  ogmrip-video-copy acidrip winff handbrake gopchop dvdbackup mencoder divxenc wodim devede videotrans dvdauthor \
+ ripoff \
  dvd+rw-tools growisofs openvpn openssl squashfs-tools squashfs-tools-ng smartmontools sweeper xfce4-xkb-plugin \
  procinfo syslinux-utils xscreensaver linuxvnc  \
  nftables ftp openssh-client aria2 atftp filezilla ftp-ssl ftpcopy gftp gftp-gtk gftp-text inetutils-ftp jftp  \
