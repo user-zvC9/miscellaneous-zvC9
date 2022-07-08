@@ -165,6 +165,12 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  bubblewrap apt-utils f2fs-tools hwinfo gufw aptitude menulibre ifupdown exfat-fuse exfat-utils ntfs-3g dosfstools  \
  sane-utils blender dcraw dia djview4 djview3 dov4l dv4l enfuse eom exif exiv2 gocr gnuift goxel gpicview \
  graphviz  gtkmorph gwenview handbrake-cli hugin hugin-tools icoutils inkscape kino kolourpaint kruler ocrad \
+ xfig xfig-doc fig2dev fig2ps kig  \
+ latex2html latex2rtf latex2rtf-doc latexdiff latexdraw latexila latexmk \
+ latex-cjk-all latex-make latex-mk latexml \
+ texlive-base texlive-extra-utils texlive-font-utils texlive-fonts-extra texlive-fonts-recommended \
+ texlive-lang-cjk texlive-latex-base texlive-latex-base-doc texlive-latex-extra texlive-latex-recommended \
+ texlive-latex-recommended-doc texlive-pstricks \
  ocrmypdf okular openscad pdf2svg pdfarranger pencil2d pfsglview pfstmo pfstools pfsview photocollage photoflare \
  phototonic pixelize pixmap png23d png2html pngmeta pqiv pstoedit qiv qosmic qpdfview rawtherapee renrot rgbpaint \
  sagcad sagcad-doc sane xsane scribus showfoto solvespace scantv streamer sxiv tesseract-ocr tesseract-ocr-eng \
@@ -182,7 +188,8 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  kopete kde-telepathy evolution thunderbird  qbittorrent transmission-gtk aptitude rtorrent mktorrent deluge kget \
  ktorrent kgpg smbclient nmap nmapsi4 memtest86+ florence  autoconf automake libtool ninja-build \
  libtool-doc remmina remmina-plugin-nx remmina-plugin-rdp remmina-plugin-vnc remmina-plugin-spice keepass2 \
- keepass2-doc keepassx keepassxc gdisk fdisk gparted parted powertop nethogs genisoimage audacity flac x11vnc ssvnc \
+ keepass2-doc keepassx keepassxc gdisk fdisk gparted parted powertop nethogs genisoimage audacity flac \
+ xtightvncviewer x11vnc ssvnc \
  tigervnc-viewer kwave lame lame-doc  ffmpeg ffmpeg-doc gdb hwinfo gddrescue x2vnc whois traceroute  tilda  \
  adb scrcpy fastboot grub-efi-amd64 encfs ecryptfs-utils virtualbox-qt virtualbox-guest-additions-iso \
  virtualbox-ext-pack parole ristretto pix apt-file git cmake cmake-doc cmake-qt-gui keyutils tomb seahorse \
