@@ -46,6 +46,18 @@ function user-zvC9-isMint () {
 	fi
 }
 
+function user-zvC9-isLMDE () {
+	if grep -q "LMDE" /etc/os-release ; then
+		echo -e "\\n\\nDetected LMDE system\\n\\n"
+		#sleep 3
+		return 0
+	else
+		echo -e "\\n\\nDetected NOT LMDE system\\n\\n"
+		#sleep 3
+		return 1
+	fi
+}
+
 
 function zvC9-adjust-etc-default-grub {
  if test -e /etc/default/grub.zvC9.bak ; then
@@ -65,33 +77,28 @@ function zvC9-adjust-etc-default-grub {
 
 visudo
 user-zvC9-sync
-
-zvC9-user-confirms-continue-or-exit
+#zvC9-user-confirms-continue-or-exit
 
 dpkg-reconfigure keyboard-configuration
 user-zvC9-sync
-
-zvC9-user-confirms-continue-or-exit
+#zvC9-user-confirms-continue-or-exit
 
 zvC9-adjust-etc-default-grub
 nano /etc/default/grub
 user-zvC9-sync
-
 zvC9-user-confirms-continue-or-exit
 
 update-grub || user-zvC9-error 6 "seems like grub config (/etc/default/grub) is wrong, you must edit it (and then you can run this script again)"
 user-zvC9-sync
-
 zvC9-user-confirms-continue-or-exit
 
-if user-zvC9-isMint ; then
+if user-zvC9-isMint || user-zvC9-isLMDE ; then
 	mintsources
 	user-zvC9-sync
+	#zvC9-user-confirms-continue-or-exit
 fi
 
-zvC9-user-confirms-continue-or-exit
-
-if user-zvC9-isMint ; then
+if user-zvC9-isMint || user-zvC9-isLMDE ; then
 	mint_packages="mint-meta-xfce  mint-meta-codecs"
 else
 	mint_packages=""
@@ -99,29 +106,25 @@ fi
 
 apt update || user-zvC9-error 1 update
 user-zvC9-sync
+#zvC9-user-confirms-continue-or-exit
 
-zvC9-user-confirms-continue-or-exit
-
-if user-zvC9-isMint ; then
+if user-zvC9-isMint || user-zvC9-isLMDE ; then
  apt-get --download-only --yes dist-upgrade
  user-zvC9-sync
- 
  zvC9-user-confirms-continue-or-exit
  
 	mintupdate-cli upgrade || user-zvC9-error 1 mintupdate-cli upgrade
 	user-zvC9-sync
-	
-	zvC9-user-confirms-continue-or-exit
+	#zvC9-user-confirms-continue-or-exit
 	
 	apt update || user-zvC9-error 1 update
 	apt-get --download-only --yes dist-upgrade
 	user-zvC9-sync
-	
 	zvC9-user-confirms-continue-or-exit
 	
 	mintupdate-cli upgrade || user-zvC9-error 1 mintupdate-cli upgrade
 	user-zvC9-sync
-	zvC9-user-confirms-continue-or-exit
+	#zvC9-user-confirms-continue-or-exit
 else
  apt-get --download-only --yes dist-upgrade
  user-zvC9-sync
@@ -129,7 +132,7 @@ else
  
 	apt dist-upgrade || user-zvC9-error 1 dist-upgrade
 	user-zvC9-sync
-	zvC9-user-confirms-continue-or-exit
+	#zvC9-user-confirms-continue-or-exit
 fi
 
 
@@ -138,14 +141,16 @@ fi
 ## pkg: ipip?
 ## find duplicates:
 ## fdupes, findup, jdupes, rdfind
-apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorriso \
+apt_pkglist_01="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorriso \
  k3b k3b-i18n geany gedit mousepad pluma basez \
  djvubind pdf2djvu pct-scanner-scripts minidjvu gscan2pdf  \
  atril evince vim aqemu qemu-system-gui qemu-utils qemu-system-x86 qemu-system-common qemu-system-data qemu-kvm \
  fdupes perforate jdupes rdfind duff \
  catfish kfind recoll pdfgrep lookup \
  diskscan \
+ scalpel forensics-all testdisk forensics-extra  \
  hexcurse bless  \
+ mkvtoolnix-gui mkvtoolnix \
  cpufrequtils ovmf bridge-utils  \
  tree zerofree \
  kdiff3 kdiff3-doc kdiff3-qt iputils-clockdiff tkcvs imediff \
@@ -192,7 +197,7 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  xtightvncviewer x11vnc ssvnc \
  tigervnc-viewer kwave lame lame-doc  ffmpeg ffmpeg-doc gdb hwinfo gddrescue x2vnc whois traceroute  tilda  \
  adb scrcpy fastboot grub-efi-amd64 encfs ecryptfs-utils virtualbox-qt virtualbox-guest-additions-iso \
- virtualbox-ext-pack parole ristretto pix apt-file git cmake cmake-doc cmake-qt-gui keyutils tomb seahorse \
+ parole ristretto pix apt-file git cmake cmake-doc cmake-qt-gui keyutils tomb seahorse \
  cryptsetup cryptsetup-bin cryptsetup-initramfs  \
  libpcre3-dev \
  guvcview cutecom minicom simple-scan links links2 lynx xarchiver p7zip-full rsync file-roller \
@@ -209,17 +214,55 @@ apt_pkglist="netdiag htop vlock pwgen screen tmux mc gparted calc brasero xorris
  libvirt-daemon-system-systemd libvirt-daemon libvirt-dbus libvirt-doc \
  spice-client-gtk gir1.2-spiceclientglib-2.0 gir1.2-spiceclientgtk-3.0 \
  $mint_packages"
- 
-apt-get --download-only --yes --no-install-recommends install $apt_pkglist  || user-zvC9-error 2 "install 1 --download-only"
+
+# this is for qemu 7.0.0, also need glib and pixman
+apt_pkglist_02="libpcre3-dev libsdl2-dev libsdl2-image-dev libgtk3.0-cil-dev python3-sphinx  libgnutls28-dev \
+	       libusb-1.0-0-dev  \
+        libvde-dev libvncserver-dev libvdeplug-dev libgtkmm-3.0-dev libusb-1.0-0-dev libcap-ng-dev \
+        libattr1-dev python3-sphinx-rtd-theme libpcre3-dev gettext"
+
+apt_pkglist_03="samba"
+
+apt_pkglist_04="openssh-server apache2 apache2-doc libapache2-mod-php php \
+  php-xml php-mysql mariadb-server mariadb-client mysql-common \
+  vsftpd samba sympathy isc-dhcp-server postgresql postgresql-client \
+  bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
+  tftpd lxc lxc-utils uget dovecot-imapd dovecot-pop3d dovecot-mysql dovecot-pgsql \
+  gocryptfs sirikali zulumount-gui zulumount-gui zulucrypt-cli zulucrypt-gui zulupolkit \
+  zulusafe-cli vtun sshpass seccure scrypt quicktun patator john openssh-sftp-server \
+  pssh ssh-tools sshesame gesftpserver lxc lxc-utils photopc autossh bing zssh zsync zurl xrdp \
+  xprobe xorp xorgxrdp xchat vtun vpnc vnstat vde2 tcpspy \
+  libvirt-daemon-driver-lxc libvirt-daemon-driver-storage-gluster libvirt-daemon-driver-storage-rbd \
+  libvirt-daemon-driver-storage-zfs libvirt-daemon-driver-xen libvirt-daemon-system-sysv \
+  spice-vdagent ansible ansible-doc ansible-lint at aide novnc"
+
+apt_pkglist_05="virtualbox-ext-pack"
+
+#apt_pkglist_all="${apt_pkglist_01} ${apt_pkglist_02} ${apt_pkglist_03} ${apt_pkglist_04} ${apt_pkglist_05}"
+#apt-get --download-only --yes --install-suggests reinstall $apt_pkglist_all  || user-zvC9-error 6 "apt-get download all pkgs"
+apt-get --download-only --yes --install-suggests reinstall $apt_pkglist_01  || user-zvC9-error  6 "apt-get download pkgs"
+apt-get --download-only --yes --install-suggests reinstall $apt_pkglist_02  || user-zvC9-error  7 "apt-get download pkgs"
+apt-get --download-only --yes --install-suggests reinstall $apt_pkglist_03  || user-zvC9-error  8 "apt-get download pkgs"
+apt-get --download-only --yes --install-suggests reinstall $apt_pkglist_04  || user-zvC9-error  9 "apt-get download pkgs"
+apt-get --download-only --yes --install-suggests reinstall $apt_pkglist_05  || user-zvC9-error 10 "apt-get download pkgs"
+mkdir /var/cache/apt/archives-saved-by-zvC9
+cp -l /var/cache/apt/archives/*.deb /var/cache/apt/archives-saved-by-zvC9/
+cp -l /var/cache/apt/archives/*.rpm /var/cache/apt/archives-saved-by-zvC9/
+user-zvC9-sync
+#/var/cache/apt/archives
+
+apt_pkglist="${apt_pkglist_05}"
+apt-get install $apt_pkglist  || user-zvC9-error 2 "install 0 --download-only"
 user-zvC9-sync
 zvC9-user-confirms-continue-or-exit
+
+apt_pkglist="${apt_pkglist_01}"
+#apt-get --download-only --yes --no-install-recommends install $apt_pkglist  || user-zvC9-error 2 "install 1 --download-only"
+#user-zvC9-sync
+#zvC9-user-confirms-continue-or-exit
 
 apt --no-install-recommends install $apt_pkglist  || user-zvC9-error 2 "install 1"
 user-zvC9-sync
-zvC9-user-confirms-continue-or-exit
- 
-
-
 systemctl  disable NetworkManager-wait-online.service
 systemctl  disable network-online.target
 user-zvC9-sync
@@ -235,29 +278,46 @@ zvC9-user-confirms-continue-or-exit
 #user-zvC9-sync
 
 # this is for qemu 7.0.0, also need glib and pixman
-apt_pkglist="libpcre3-dev libsdl2-dev libsdl2-image-dev libgtk3.0-cil-dev python3-sphinx  libgnutls28-dev \
-	       libusb-1.0-0-dev  \
-        libvde-dev libvncserver-dev libvdeplug-dev libgtkmm-3.0-dev libusb-1.0-0-dev libcap-ng-dev \
-        libattr1-dev python3-sphinx-rtd-theme libpcre3-dev gettext"
-apt-get --download-only --yes install $apt_pkglist  || user-zvC9-error 3 "install 2 --download-only"
-user-zvC9-sync
-zvC9-user-confirms-continue-or-exit
+
+apt_pkglist="${apt_pkglist_02}"
+#apt-get --download-only --yes install $apt_pkglist  || user-zvC9-error 3 "install 2 --download-only"
+#user-zvC9-sync
+#zvC9-user-confirms-continue-or-exit
 
 apt  install $apt_pkglist  || user-zvC9-error 3 "install 2"
 user-zvC9-sync
-zvC9-user-confirms-continue-or-exit
+#zvC9-user-confirms-continue-or-exit
 
 update-alternatives --config iptables
 user-zvC9-sync
 zvC9-user-confirms-continue-or-exit
 
-apt install samba  || user-zvC9-error 4 "install 3"
-systemctl stop smbd
-systemctl stop nmbd
-systemctl disable smbd
-systemctl disable nmbd
-user-zvC9-sync
-zvC9-user-confirms-continue-or-exit
+
+
+
+apt_pkglist="${apt_pkglist_03}"
+#apt-get --download-only --yes install $apt_pkglist  || user-zvC9-error 3 "install 3 --download-only"
+#user-zvC9-sync
+#zvC9-user-confirms-continue-or-exit
+if apt install $apt_pkglist ; then
+ systemctl stop smbd
+ systemctl stop nmbd
+ systemctl disable smbd
+ systemctl disable nmbd
+ user-zvC9-sync
+ #zvC9-user-confirms-continue-or-exit
+else
+ systemctl stop smbd
+ systemctl stop nmbd
+ systemctl disable smbd
+ systemctl disable nmbd
+ user-zvC9-sync
+ user-zvC9-error 4 "install 3"
+fi
+
+
+
+
  
 # apt install ansible libopenusb-dev python3-sphinx-bootstrap-theme
 
@@ -324,21 +384,12 @@ fi
 
 user-zvC9-sync
 
-apt-get --download-only --yes install openssh-server apache2 apache2-doc libapache2-mod-php php \
-  php-xml php-mysql mariadb-server mariadb-client mysql-common \
-  vsftpd samba sympathy isc-dhcp-server postgresql postgresql-client \
-  bind9 bind9-dnsutils bind9-utils bind9-host bind9-doc bsd-mailx postfix \
-  tftpd lxc lxc-utils uget dovecot-imapd dovecot-pop3d dovecot-mysql dovecot-pgsql \
-  gocryptfs sirikali zulumount-gui zulumount-gui zulucrypt-cli zulucrypt-gui zulupolkit \
-  zulusafe-cli vtun sshpass seccure scrypt quicktun patator john openssh-sftp-server \
-  pssh ssh-tools sshesame gesftpserver lxc lxc-utils photopc autossh bing zssh zsync zurl xrdp \
-  xprobe xorp xorgxrdp xchat vtun vpnc vnstat vde2 tcpspy \
-  libvirt-daemon-driver-lxc libvirt-daemon-driver-storage-gluster libvirt-daemon-driver-storage-rbd \
-  libvirt-daemon-driver-storage-zfs libvirt-daemon-driver-xen libvirt-daemon-system-sysv \
-  spice-vdagent ansible ansible-doc ansible-lint at aide       || user-zvC9-error 5 "apt: download packages"
-# also: novnc 
-user-zvC9-sync
+
+#apt_pkglist="${apt_pkglist_04}"
+#apt-get --download-only --yes install $apt_pkglist  || user-zvC9-error 5 "apt-get --download-only"
+#user-zvC9-sync
 zvC9-user-confirms-continue-or-exit
+
 
 hp-plugin || user-zvC9-error 8 "hp-plugin"
 user-zvC9-sync
